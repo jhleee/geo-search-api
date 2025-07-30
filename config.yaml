@@ -1,0 +1,70 @@
+# ============================================
+# GeoTag API Configuration
+# 
+# 한국어 위치 태깅 시스템 설정 파일
+# ============================================
+
+# Database settings
+database:
+  path: "geo_tags.db"
+  
+# Embedding settings
+embedding:
+  model_name: "dragonkue/multilingual-e5-small-ko"  # Korean optimized model
+  # Alternative models:
+  # - "all-MiniLM-L6-v2"                    # Original English model (22MB, 384dim)
+  # - "intfloat/multilingual-e5-small"      # Multilingual E5 (118MB, 384dim)
+  # - "dragonkue/BGE-m3-ko"                 # Korean BGE model (1024dim)
+  
+  dimension: 384
+  max_sequence_length: 512
+  use_query_prefix: true  # Use "query:" prefix for E5 models
+  use_passage_prefix: true  # Use "passage:" prefix for passages
+  
+  # FAISS index settings
+  index_path: "faiss_index.bin"
+  metadata_path: "faiss_metadata.pkl"
+  index_type: "IVFFlat"  # Options: IVFFlat, Flat
+  n_centroids: 100  # Number of centroids for IVF
+  n_probe: 10  # Number of centroids to search
+  
+  # Performance settings
+  similarity_threshold: 0.5
+  batch_size: 32
+  
+# API settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  log_level: "info"
+  title: "Geo Tag API"
+  description: "A lightweight location tagging and search system with Korean language support"
+  version: "1.0.0"
+  
+# Search settings
+search:
+  default_limit: 10
+  max_limit: 100
+  default_radius_km: 1.0
+  max_radius_km: 100.0
+  text_search_limit: 100
+  vector_search_limit: 50
+
+# Bulk operations settings
+bulk:
+  max_locations_per_request: 1000
+  batch_size: 100  # For processing large bulk operations
+  enable_parallel_processing: true
+  
+# Performance settings
+performance:
+  max_memory_mb: 512  # Memory limit for Raspberry Pi
+  max_threads: 2  # Thread limit for FAISS
+  auto_save_interval: 100  # Auto-save FAISS index every N operations
+  
+# Logging settings
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: null  # Set to filename for file logging
