@@ -231,3 +231,8 @@ performance:
 ## 📄 라이선스
 
 이 프로젝트는 MIT 라이선스 하에 있습니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+
+## 🤖 Special Thanks
+
+이 프로젝트는 [Claude Code](https://github.com/anthropics/claude-code)와 함께 개발되었습니다. 
+버그는 제가 만들었고, 잘 작동하는 부분은 Claude가 도와줬습니다. 😅
